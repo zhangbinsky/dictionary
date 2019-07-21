@@ -1,0 +1,4 @@
+create database dict charset=utf8;
+
+use dict
+create table user(id int auto_increa

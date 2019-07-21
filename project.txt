@@ -1,0 +1,206 @@
+Git 
+
+git命令 ： git config
+
+基础命令： git init
+           git status
+           git  add        git rm --cached
+           git  commit 
+					 git  log
+
+
+查看工作区文件与仓库区差别
+git diff [file]
+
+从仓库区找回文件
+git checkout -- [file]
+
+文件删除和移动操作
+git rm [file]
+git mv [file] [path]
+
+
+1. 版本控制
+	
+	退回到上一个版本
+   git  reset  --hard  HEAD^
+
+	去往指定commit id版本
+	 git  reset  --hard [commit_id]
+	
+	查看所有操作记录
+	 git  reflog   
+
+  标签查看
+	git tag
+
+	添加标签
+
+	git tag  [t_name] [commit_id] -m [message]
+  
+	查看详细标签信息
+	git show  [tag]
+
+	标签跳转
+	git  reset --hard  [tag]
+
+	删除标签
+	git tag -d [tag]
+
+2.  工作区保存
+
+  保存工作区
+	git stash save [msg]
+
+	查看工作区
+	git stash list
+
+	应用工作区
+	git stash apply [stash]
+
+	删除工作区
+	git stash drop [stash]
+	git stash clear
+
+3. 分支管理  
+
+  分支查看  git branch -a
+	* 表示正在哪个分支上工作
+
+	创建分支  git branch  [branch_name]
+
+	切换工作分支  git checkout  [branch]
+
+  创建新的分支并切换
+	git checkout -b [branch]
+
+	合并分支
+	git merge [branch]
+
+	冲突： 多个分支修改同一个内容，需要人为解决冲突
+
+	删除分支
+	git banch -d  [branch]
+
+4. 远程仓库
+
+  从远程下载项目
+
+	git  clone  [address]
+
+	连接远程仓库
+
+	git remote add [远程仓库名] [远程仓库地址]
+
+	git remote 查看本仓库连接的远程主机
+
+	git remote rm [远程仓库名] 删除连接的远程仓库
+
+  上传内容
+
+	将master分支上传 -u 自动建立对应关系
+	git push -u origin master
+
+	git push origin [tag]  上传标签
+
+	git push origin [:branch] 删除远程分支
+
+	git push origin --delete tag [tag]  删除远程标签
+
+
+	获取内容
+
+	git pull   拉取到本地，直接与现在分支合并
+ 
+	git fetch  拉取到本地，暂时不合并
+
+
+
+ssh连接
+  
+	1. ssh-keygen 生成秘钥
+	2. 将 ~/.ssh/id_rsa.pub 内容添加到github信任
+
+
+
+软件项目开发流程
+
+
+需求分析 ： 确定用户需求
+
+概要设计 ： 整体的技术架构及产品原型整理
+（项目规划）
+
+详细设计 ： 形成详细设计文档，编码，测试，技术攻关
+（编码）
+
+项目测试 ： 测试，修改，完善 
+
+项目交付： 部署，交付，上线
+
+后期维护 ： 产品迭代升级
+
+
+项目开发工具 ： visio  xmind  markdown project git
+
+
+在线词典
+
+1. 分为客户端和服务端，可以满足多个客户端同时操作
+
+2. 客户端启动后进入 一级界面  功能： 注册，登录，退出
+   
+	 注册： 用户名 密码是必须的，用户信息需要长期保持，要求用户名不能重复
+
+	 登录： 登录凭借用户名密码登录
+
+3. 	 登录或者注册成功后即进入二级界面 ： 查单词，历史记录，注销
+
+	 查单词 ： 循环输入单词获取单词解释
+
+	 历史记录： 查看本人最近10条查词记录，记录内容包含：name word  time
+
+	 注销 ： 退回到一级界面
+
+
+流程 ： * 分析确定 并发 网络 
+
+          多进程并发   tcp 
+
+        * 创建数据库和数据表  mysql 
+				如果单词使用数据库查询，将单词插入数据表
+
+				  用户：create table user (id int auto_increment,name varchar(32) not null,passwd varchar(128) not null,primary key(id));
+					
+					历史记录：create table hist (id int auto_increment,name varchar(32) not null,word varchar(32) not null,time datetime default now(),primary key(id));
+					
+					单词： create table words (id int auto_increment,word varchar(32),mean text,primary key(id));
+
+
+				* 确定封装类型，功能模块划分
+					
+					函数、类 封装
+
+					网络搭建 登录  注册  查单词  历史记录  退出
+
+
+				* 搭建网络通信  （并发编程，多进程多线程IO）
+
+				* 对应功能编写  （ftp文件服务器）
+				
+
+
+cookie ： import getpass
+          
+					pwd = getpass.getpass()
+					功能： 隐藏输入内容
+
+
+任务 ： 编写 在线词典
+        回顾 http协议和httpserver 2.0
+
+
+
+
+
+
